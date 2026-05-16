@@ -160,6 +160,36 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
 
+  dynamicCategoryList: {
+    gap: 10,
+    paddingBottom: 6,
+    paddingTop: 4,
+  },
+
+  dynamicCategoryChip: {
+    backgroundColor: "#FFFFFF",
+    borderColor: "#E4E7EC",
+    borderRadius: 16,
+    borderWidth: 1,
+    elevation: 1,
+    minWidth: 128,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+  },
+
+  dynamicCategoryTitle: {
+    color: "#101828",
+    fontSize: 14,
+    fontWeight: "900",
+  },
+
+  dynamicCategoryCount: {
+    color: "#667085",
+    fontSize: 12,
+    fontWeight: "700",
+    marginTop: 3,
+  },
+
   heroCard: {
     marginTop: 12,
 

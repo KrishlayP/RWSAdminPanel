@@ -9,7 +9,7 @@
         @if ($errors->any())
             <div class="errors">{{ $errors->first() }}</div>
         @endif
-        <form method="post" action="{{ $item->exists ? route('admin.media.update', $item) : route('admin.media.store') }}">
+        <form method="post" enctype="multipart/form-data" action="{{ $item->exists ? route('admin.media.update', $item) : route('admin.media.store') }}">
             @csrf
             @if ($item->exists)
                 @method('put')
@@ -41,11 +41,26 @@
                     <input id="subtitle" name="subtitle" value="{{ old('subtitle', $item->subtitle) }}">
                 </div>
                 <div class="field full">
-                    <label for="image_url">Image URL</label>
+                    <label for="image_files">Upload Images</label>
+                    <input id="image_files" name="image_files[]" type="file" accept="image/*" multiple>
+                    <div class="muted">You can select multiple images. First image becomes the main preview.</div>
+                    @if ($item->image_url)
+                        <p><a href="{{ $item->image_url }}" target="_blank">View current main image</a></p>
+                    @endif
+                </div>
+                <div class="field full">
+                    <label for="image_url">Image URL fallback</label>
                     <input id="image_url" name="image_url" type="url" value="{{ old('image_url', $item->image_url) }}" placeholder="https://...">
                 </div>
                 <div class="field full">
-                    <label for="media_url">Download/Media URL</label>
+                    <label for="media_file">Upload Audio / PDF / File</label>
+                    <input id="media_file" name="media_file" type="file" accept="audio/*,video/*,application/pdf,image/*">
+                    @if ($item->media_url)
+                        <p><a href="{{ $item->media_url }}" target="_blank">View current media file</a></p>
+                    @endif
+                </div>
+                <div class="field full">
+                    <label for="media_url">Download/Media URL fallback</label>
                     <input id="media_url" name="media_url" type="url" value="{{ old('media_url', $item->media_url) }}" placeholder="https://...">
                 </div>
                 <div class="field">

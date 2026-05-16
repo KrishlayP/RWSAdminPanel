@@ -1,6 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Animated, Easing, FlatList, Text } from "react-native";
+import {
+  Animated,
+  Easing,
+  FlatList,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 import { useTranslation } from "react-i18next";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -41,6 +47,11 @@ export default function HomeScreen() {
   });
   const [isLibraryReady, setIsLibraryReady] = useState(false);
   const [contentData, setContentData] = useState({
+    categories: Object.entries(CATEGORY_CONTENT).map(([id, category]) => ({
+      id,
+      title: category.title,
+      description: category.description,
+    })),
     categoryContent: CATEGORY_CONTENT,
     mediaItems: MEDIA_ITEMS,
   });
@@ -86,6 +97,7 @@ export default function HomeScreen() {
         if (!isMounted || !remoteContent) return;
 
         setContentData({
+          categories: remoteContent.categories || [],
           categoryContent: remoteContent.categoryContent || CATEGORY_CONTENT,
           mediaItems: remoteContent.mediaItems || MEDIA_ITEMS,
         });
@@ -94,6 +106,11 @@ export default function HomeScreen() {
         if (!isMounted) return;
 
         setContentData({
+          categories: Object.entries(CATEGORY_CONTENT).map(([id, category]) => ({
+            id,
+            title: category.title,
+            description: category.description,
+          })),
           categoryContent: CATEGORY_CONTENT,
           mediaItems: MEDIA_ITEMS,
         });
@@ -301,6 +318,56 @@ export default function HomeScreen() {
     [favoriteIds, openCategory, requestProtectedAction, toggleFavorite, t],
   );
 
+  const selectedCategory = useMemo(() => {
+    const category =
+      contentData.categoryContent[selectedCategoryId] ||
+      contentData.categoryContent.wallpapers ||
+      CATEGORY_CONTENT.wallpapers;
+
+    return {
+      ...category,
+      items: (category.items || []).flatMap((item) => {
+        const images = Array.isArray(item.images) ? item.images.filter(Boolean) : [];
+
+        if (item.type !== "image" || images.length <= 1) {
+          return [item];
+        }
+
+        return images.map((image, imageIndex) => ({
+          ...item,
+          id: `${item.id}-image-${imageIndex + 1}`,
+          image,
+          title:
+            images.length > 1
+              ? `${item.title} ${imageIndex + 1}`
+              : item.title,
+        }));
+      }),
+    };
+  }, [contentData.categoryContent, selectedCategoryId]);
+
+  const dynamicCategories = useMemo(
+    () =>
+      contentData.categories.filter(
+        (category) => contentData.categoryContent[category.id],
+      ),
+    [contentData.categories, contentData.categoryContent],
+  );
+
+  const getCategoryItemCount = useCallback(
+    (categoryId) =>
+      (contentData.categoryContent[categoryId]?.items || []).reduce(
+        (total, item) =>
+          total +
+          Math.max(
+            1,
+            Array.isArray(item.images) ? item.images.filter(Boolean).length : 0,
+          ),
+        0,
+      ),
+    [contentData.categoryContent],
+  );
+
   const homeHeader = useMemo(
     () => (
       <>
@@ -314,6 +381,24 @@ export default function HomeScreen() {
           t={t}
         />
         <ShortcutList onOpenCategory={openCategory} t={t} />
+        <FlatList
+          horizontal
+          data={dynamicCategories}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.dynamicCategoryChip}
+              onPress={() => openCategory(item.id)}
+            >
+              <Text style={styles.dynamicCategoryTitle}>{item.title}</Text>
+              <Text style={styles.dynamicCategoryCount}>
+                {getCategoryItemCount(item.id)} items
+              </Text>
+            </TouchableOpacity>
+          )}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.dynamicCategoryList}
+        />
         <HeroBanner onOpenCategory={openCategory} t={t} />
         <MediaTypeTabs
           activeType={activeType}
@@ -329,7 +414,9 @@ export default function HomeScreen() {
     [
       activeType,
       contentData.categoryContent,
+      dynamicCategories,
       contentData.mediaItems,
+      getCategoryItemCount,
       i18n.language,
       openCategory,
       openDrawer,
@@ -411,11 +498,7 @@ export default function HomeScreen() {
     return (
       <>
         <CategoryScreen
-          category={
-            contentData.categoryContent[selectedCategoryId] ||
-            contentData.categoryContent.wallpapers ||
-            CATEGORY_CONTENT.wallpapers
-          }
+          category={selectedCategory}
           categoryId={selectedCategoryId}
           favoriteIds={favoriteIds}
           onBack={() => setSelectedCategoryId("")}

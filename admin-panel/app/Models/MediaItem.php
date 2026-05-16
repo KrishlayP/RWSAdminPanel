@@ -16,6 +16,7 @@ class MediaItem extends Model
         'title',
         'subtitle',
         'image_url',
+        'gallery_urls',
         'media_url',
         'size_label',
         'sort_order',
@@ -26,6 +27,7 @@ class MediaItem extends Model
     protected $casts = [
         'is_featured' => 'boolean',
         'is_active' => 'boolean',
+        'gallery_urls' => 'array',
         'sort_order' => 'integer',
     ];
 
