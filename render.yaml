@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: rws-admin-panel
+    runtime: docker
+    plan: free
+    rootDir: .
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: APP_NAME
+        value: RWS Admin
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        value: 5432
+      - key: DB_DATABASE
+        value: postgres
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSLMODE
+        value: require
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
