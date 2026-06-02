@@ -27,6 +27,7 @@ export default function AccountScreen({
   page,
   phoneUser,
   settings,
+  subscription,
 }) {
   const title = PAGE_TITLES[page] || "Account";
   const data = page === "downloads" ? downloads : favorites;
@@ -73,11 +74,11 @@ export default function AccountScreen({
   const profileRows = useMemo(
     () => [
       ["Phone", phoneUser?.phone || "Not verified"],
-      ["Plan", "Free"],
+      ["Plan", subscription?.isActive ? "Premium" : "Free"],
       ["Saved items", `${favorites.length}`],
       ["Downloads", `${downloads.length}`],
     ],
-    [downloads.length, favorites.length, phoneUser?.phone],
+    [downloads.length, favorites.length, phoneUser?.phone, subscription?.isActive],
   );
 
   return (

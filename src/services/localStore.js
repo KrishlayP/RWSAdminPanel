@@ -6,6 +6,10 @@ const DEFAULT_LIBRARY = {
   downloads: [],
   favorites: [],
   phoneUser: null,
+  subscription: {
+    isActive: false,
+    activatedAt: null,
+  },
   settings: {
     autoPlayPreviews: true,
     dailyReminders: true,
@@ -25,6 +29,10 @@ export async function loadUserLibrary() {
     return {
       ...DEFAULT_LIBRARY,
       ...parsed,
+      subscription: {
+        ...DEFAULT_LIBRARY.subscription,
+        ...(parsed.subscription || {}),
+      },
       settings: {
         ...DEFAULT_LIBRARY.settings,
         ...(parsed.settings || {}),
