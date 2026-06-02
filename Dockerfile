@@ -1,3 +1,14 @@
+FROM node:22-bookworm-slim AS frontend
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY resources ./resources
+COPY vite.config.js ./
+RUN npm run build
+
 FROM php:8.2-cli
 
 RUN apt-get update \
@@ -13,6 +24,7 @@ COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-scripts --prefer-dist --optimize-autoloader
 
 COPY . .
+COPY --from=frontend /app/public/build ./public/build
 
 RUN composer dump-autoload --optimize \
     && chmod -R 775 storage bootstrap/cache
