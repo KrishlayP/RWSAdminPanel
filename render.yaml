@@ -3,7 +3,7 @@ services:
     name: rws-admin-panel
     runtime: docker
     plan: free
-    rootDir: admin-panel
+    rootDir: .
     dockerfilePath: ./Dockerfile
     envVars:
       - key: APP_NAME
