@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 16,
 
-    paddingBottom: 118,
+    paddingBottom: 36,
 
     paddingTop: 12,
   },
@@ -406,59 +406,7 @@ export const styles = StyleSheet.create({
   categoryList: {
     paddingHorizontal: 16,
     paddingTop: 18,
-    paddingBottom: 118,
-  },
-
-  categoryDirectoryList: {
-    padding: 16,
-    paddingBottom: 118,
-  },
-
-  categoryDirectoryCard: {
-    alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    borderColor: "#EAECF0",
-    borderRadius: 18,
-    borderWidth: 1,
-    elevation: 2,
-    flexDirection: "row",
-    gap: 12,
-    marginBottom: 12,
-    minHeight: 82,
-    paddingHorizontal: 14,
-  },
-
-  categoryDirectoryIcon: {
-    alignItems: "center",
-    backgroundColor: "#FFF7ED",
-    borderRadius: 17,
-    height: 46,
-    justifyContent: "center",
-    width: 46,
-  },
-
-  categoryDirectoryIconText: {
-    color: "#C2410C",
-    fontSize: 17,
-    fontWeight: "900",
-  },
-
-  categoryDirectoryText: {
-    flex: 1,
-    minWidth: 0,
-  },
-
-  categoryDirectoryTitle: {
-    color: "#101828",
-    fontSize: 16,
-    fontWeight: "900",
-  },
-
-  categoryDirectoryMeta: {
-    color: "#667085",
-    fontSize: 13,
-    fontWeight: "700",
-    marginTop: 3,
+    paddingBottom: 32,
   },
 
   categoryCard: {
@@ -697,7 +645,6 @@ export const styles = StyleSheet.create({
 
   accountContent: {
     padding: 16,
-    paddingBottom: 118,
   },
 
   profileHeroCard: {
@@ -736,7 +683,7 @@ export const styles = StyleSheet.create({
 
   accountList: {
     padding: 16,
-    paddingBottom: 118,
+    paddingBottom: 34,
   },
 
   accountListCard: {
@@ -853,112 +800,6 @@ export const styles = StyleSheet.create({
     borderColor: "#C2410C",
     borderRadius: 14,
     marginTop: 8,
-  },
-
-  apiStatusBanner: {
-    alignItems: "center",
-    backgroundColor: "#ECFDF3",
-    borderColor: "#ABEFC6",
-    borderRadius: 18,
-    borderWidth: 1,
-    flexDirection: "row",
-    gap: 10,
-    marginBottom: 12,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-  },
-
-  apiStatusWarning: {
-    backgroundColor: "#FFF7ED",
-    borderColor: "#FED7AA",
-  },
-
-  apiStatusTextWrap: {
-    flex: 1,
-    minWidth: 0,
-  },
-
-  apiStatusTitle: {
-    color: "#101828",
-    fontSize: 14,
-    fontWeight: "900",
-  },
-
-  apiStatusMeta: {
-    color: "#667085",
-    fontSize: 12,
-    fontWeight: "700",
-    marginTop: 3,
-  },
-
-  apiStatusButton: {
-    alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    borderColor: "#EAECF0",
-    borderRadius: 18,
-    borderWidth: 1,
-    height: 42,
-    justifyContent: "center",
-    width: 42,
-  },
-
-  apiStatusIcon: {
-    margin: 0,
-  },
-
-  bottomTabs: {
-    alignItems: "center",
-    alignSelf: "center",
-    backgroundColor: "#101828",
-    borderColor: "rgba(255,255,255,0.14)",
-    borderRadius: 26,
-    borderWidth: 1,
-    bottom: 16,
-    elevation: 12,
-    flexDirection: "row",
-    gap: 4,
-    left: 16,
-    minHeight: 68,
-    paddingHorizontal: 8,
-    paddingVertical: 7,
-    position: "absolute",
-    right: 16,
-    zIndex: 40,
-  },
-
-  bottomTab: {
-    alignItems: "center",
-    borderRadius: 20,
-    flex: 1,
-    justifyContent: "center",
-    minHeight: 54,
-  },
-
-  bottomTabActive: {
-    backgroundColor: "#C2410C",
-  },
-
-  bottomTabIcon: {
-    height: 26,
-    margin: 0,
-    width: 26,
-  },
-
-  bottomTabLabel: {
-    color: "#CBD5E1",
-    fontSize: 11,
-    fontWeight: "800",
-    marginTop: 1,
-  },
-
-  bottomTabLabelActive: {
-    color: "#FFFFFF",
-  },
-
-  appSnackbar: {
-    backgroundColor: "#101828",
-    borderRadius: 14,
-    bottom: 82,
   },
 
   premiumCard: {
@@ -1426,136 +1267,6 @@ export const styles = StyleSheet.create({
     color: "#344054",
     fontWeight: "800",
     textAlign: "center",
-  },
-
-  subscriptionOverlay: {
-    flex: 1,
-    backgroundColor: "rgba(15, 23, 42, 0.58)",
-    justifyContent: "center",
-    paddingHorizontal: 20,
-  },
-
-  subscriptionCard: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 24,
-    padding: 20,
-  },
-
-  subscriptionHeader: {
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 12,
-  },
-
-  subscriptionIconWrap: {
-    alignItems: "center",
-    backgroundColor: "#FFF7ED",
-    borderRadius: 18,
-    height: 44,
-    justifyContent: "center",
-    width: 54,
-  },
-
-  subscriptionIconText: {
-    color: "#C2410C",
-    fontSize: 13,
-    fontWeight: "900",
-  },
-
-  subscriptionTitle: {
-    color: "#101828",
-    fontSize: 24,
-    fontWeight: "900",
-    letterSpacing: 0,
-  },
-
-  subscriptionSubtitle: {
-    color: "#667085",
-    fontSize: 14,
-    lineHeight: 20,
-    marginTop: 6,
-    marginBottom: 16,
-  },
-
-  subscriptionUsageRow: {
-    alignItems: "center",
-    backgroundColor: "#F9FAFB",
-    borderColor: "#EAECF0",
-    borderRadius: 16,
-    borderWidth: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-  },
-
-  subscriptionUsageLabel: {
-    color: "#667085",
-    fontSize: 13,
-    fontWeight: "800",
-  },
-
-  subscriptionUsageValue: {
-    color: "#101828",
-    fontSize: 18,
-    fontWeight: "900",
-  },
-
-  subscriptionPlanBox: {
-    alignItems: "center",
-    backgroundColor: "#FFF7ED",
-    borderColor: "#FED7AA",
-    borderRadius: 18,
-    borderWidth: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 12,
-    padding: 14,
-  },
-
-  subscriptionPlanTitle: {
-    color: "#101828",
-    fontSize: 15,
-    fontWeight: "900",
-  },
-
-  subscriptionPlanMeta: {
-    color: "#667085",
-    fontSize: 12,
-    fontWeight: "700",
-    marginTop: 3,
-  },
-
-  subscriptionPrice: {
-    color: "#C2410C",
-    fontSize: 22,
-    fontWeight: "900",
-  },
-
-  subscriptionError: {
-    color: "#DC2626",
-    fontSize: 13,
-    marginTop: 10,
-  },
-
-  subscriptionPrimaryButton: {
-    alignItems: "center",
-    backgroundColor: "#C2410C",
-    borderRadius: 14,
-    justifyContent: "center",
-    marginTop: 16,
-    minHeight: 50,
-  },
-
-  subscriptionPrimaryText: {
-    color: "#FFFFFF",
-    fontSize: 15,
-    fontWeight: "900",
-  },
-
-  subscriptionConfirmButton: {
-    marginTop: 4,
   },
 
   errorContainer: {

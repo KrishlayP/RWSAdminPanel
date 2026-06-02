@@ -5,15 +5,7 @@ export async function fetchRemoteContent() {
     return null;
   }
 
-  const response = await fetch(
-    `${API_URL.replace(/\/$/, "")}/api/content?t=${Date.now()}`,
-    {
-      cache: "no-store",
-      headers: {
-        "Cache-Control": "no-cache",
-      },
-    },
-  );
+  const response = await fetch(`${API_URL.replace(/\/$/, "")}/api/content`);
 
   if (!response.ok) {
     throw new Error("Content API request failed.");
